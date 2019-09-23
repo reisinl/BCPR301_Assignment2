@@ -1,0 +1,8 @@
+U  self.drawer.penUp()
+P  self.drawer.selectPen(<1>)
+D  self.drawer.penDown()
+N  self.drawer.drawLine(90, <1>)
+E  self.drawer.drawLine(0, <1>)
+S  self.drawer.drawLine(270, <1>)
+W  self.drawer.drawLine(180, <1>)
+C  self.drawer.drawCircle(<1>)
