@@ -1,6 +1,5 @@
 import Drawer
-import tkinter
-import sys
+
 
 class TkDrawer(Drawer.Drawer):
     def __init__(self, canvas):
@@ -47,6 +46,6 @@ class TkDrawer(Drawer.Drawer):
             self.canvas.create_line(start, end, fill=self.pen_colour)
 
     def drawCircle(self, radius):
-        top_point = ((self._x - radius), (self._y - radius))
-        bottom_point = ((self._x + radius), (self._y + radius))
-        self.canvas.create_oval(top_point, bottom_point, outline=self.pen_colour)
+        top_pnt = ((self._x - radius), (self._y - radius))
+        bottom_pnt = ((self._x + radius), (self._y + radius))
+        self.canvas.create_oval(top_pnt, bottom_pnt, outline=self.pen_colour)
