@@ -1,0 +1,13 @@
+Feature List
+
+    Show a GUI windows
+
+    Open a file (*.hog)
+
+    Draw a line based on the configuration in the hog file
+
+    Draw a circle based on the configuration in the hog file
+
+    Save a file
+
+    Show [About] of the application

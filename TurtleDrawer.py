@@ -4,7 +4,7 @@ import Drawer
 
 class TurtleDrawer(Drawer.Drawer):
     def __init__(self, canvas):
-        super().__init__(canvas);
+        super().__init__(canvas)
         self.my_turtle = turtle.RawPen(self.canvas)
         self.my_turtle.degrees()
         self.selectPen(0)

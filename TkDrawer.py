@@ -6,7 +6,7 @@ class TkDrawer(Drawer.Drawer):
     def __init__(self, canvas):
         self._x = canvas.winfo_reqwidth() / 4
         self._y = canvas.winfo_reqheight() / 6
-        super().__init__(canvas);
+        super().__init__(canvas)
         self.selectPen(0)
         self.penUp()
 
