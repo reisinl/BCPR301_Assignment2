@@ -1,4 +1,6 @@
 import re
+
+
 class Parser:
     def __init__(self, drawer):
         self.drawer = drawer
@@ -7,42 +9,42 @@ class Parser:
         self.data = 0
         lines = [line for line in open("lookUpTable.txt")]
         self.commands = {}
-        commandPattern = re.compile("^([A-Z])\s+(.*)$")
+        command_pattern = re.compile("^([A-Z])\s+(.*)$")
         for line in lines:
-            match = re.match(commandPattern, line)
+            match = re.match(command_pattern, line)
             if match is not None:
                 self.commands[match.group(1)] = match.group(2)
 
     def parse(self, lines):
         for line in lines:
             self.parseLine(line)
-    
+
     def parseLine(self, line):
-        commandPattern = re.compile("^([A-Z])\s*(.*)$", re.IGNORECASE)
-        match = re.match(commandPattern, line)
+        command_pattern = re.compile("^([A-Z])\s*(.*)$", re.IGNORECASE)
+        match = re.match(command_pattern, line)
         if match is not None:
             command = match.group(1)
             value = self.commands[command.upper()]
-            parameterPattern = re.compile("<([0-9]+)>")
-            parameters = re.findall(parameterPattern, value)
+            parameter_pattern = re.compile("<([0-9]+)>")
+            parameters = re.findall(parameter_pattern, value)
             parameters = [int(parameter) for parameter in parameters]
-            replaceCount = 0
-            numParameters = 0
+            replace_count = 0
+            num_parameters = 0
             if parameters:
-                numParameters = max(parameters)
-                parameterExpression = "\s+([0-9]+)" * numParameters
-                parameterPattern = re.compile("^[A-Z]"+parameterExpression, re.IGNORECASE)
-                match = re.match(parameterPattern, line)
+                num_parameters = max(parameters)
+                parameter_expression = "\s+([0-9]+)" * num_parameters
+                parameter_pattern = re.compile("^[A-Z]" + parameter_expression, re.IGNORECASE)
+                match = re.match(parameter_pattern, line)
                 if match is not None:
                     parameters = match.groups()
-                    parameterPattern = re.compile("<([0-9]+)>")
-                    match = re.search(parameterPattern, value)
+                    parameter_pattern = re.compile("<([0-9]+)>")
+                    match = re.search(parameter_pattern, value)
                     while match is not None:
-                        replaceCount = replaceCount + 1
-                        parameterNumber=int(match.group(1))
-                        value=value[:match.start()] + parameters[parameterNumber-1] + value[match.end():]
-                        match = re.search(parameterPattern, value)
-            if numParameters == replaceCount:
+                        replace_count = replace_count + 1
+                        parameter_number = int(match.group(1))
+                        value = value[:match.start()] + parameters[parameter_number - 1] + value[match.end():]
+                        match = re.search(parameter_pattern, value)
+            if num_parameters == replace_count:
                 exec(value)
             else:
                 print("Parameter count mismatch!")
