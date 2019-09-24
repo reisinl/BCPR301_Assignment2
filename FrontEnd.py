@@ -16,9 +16,13 @@ class FrontEnd(object):
         self.root = tkinter.Tk()
         self.root.resizable(width=False, height=False)
         self.root.title("Learn To Draw A Hog")
-        self.canvas = tkinter.Canvas(master=self.root, cnf={"width": 500, "height": 200, "bg": "white"})
+        self.canvas = tkinter.Canvas(master=self.root, cnf={
+            "width": 500, "height": 200, "bg": "white"
+        })
         self.canvas.pack(side=tkinter.TOP)
-        self.text = scrolledtext.ScrolledText(master=self.root, cnf={"width": 80, "height": 10})
+        self.text = scrolledtext.ScrolledText(master=self.root, cnf={
+            "width": 80, "height": 10
+        })
         self.text.pack(side=tkinter.BOTTOM)
         self._handleArguments()
         self.menu = tkinter.Menu(master=self.root)
@@ -61,13 +65,17 @@ class FrontEnd(object):
         self.canvas.delete("zipzap")
 
     def openFile(self):
-        opened_file = filedialog.askopenfile(mode="r", filetypes=[("Hog Files", "*.hog")])
+        opened_file = filedialog.askopenfile(
+            mode="r", filetypes=[("Hog Files", "*.hog")]
+        )
         if opened_file is not None:
             file_data = opened_file.read()
             self._setText(file_data)
 
     def saveFile(self):
-        saved_file = filedialog.asksaveasfile(mode="w", filetypes=[("Hog Files", "*.hog")])
+        saved_file = filedialog.asksaveasfile(
+            mode="w", filetypes=[("Hog Files", "*.hog")]
+        )
         if saved_file is not None:
             saved_file.write(self._getText())
             saved_file.close()
@@ -87,7 +95,9 @@ class FrontEnd(object):
         self.draw(TkDrawer(self.canvas))
 
     def showAbout(self):
-        messagebox.showinfo(title="Hogzilla", message="TIGr Frontend \nBy Umang & Chris")
+        messagebox.showinfo(
+            title="Hogzilla", message="TIGr Frontend \nBy Umang & Chris"
+        )
 
     def _handleArguments(self):
         if len(sys.argv) > 1:

@@ -33,7 +33,9 @@ class Parser:
             if parameters:
                 num_parameters = max(parameters)
                 parameter_expression = "\s+([0-9]+)" * num_parameters
-                parameter_pattern = re.compile("^[A-Z]" + parameter_expression, re.IGNORECASE)
+                parameter_pattern = re.compile(
+                    "^[A-Z]" + parameter_expression, re.IGNORECASE
+                )
                 match = re.match(parameter_pattern, line)
                 if match is not None:
                     parameters = match.groups()
@@ -42,7 +44,10 @@ class Parser:
                     while match is not None:
                         replace_count = replace_count + 1
                         parameter_number = int(match.group(1))
-                        value = value[:match.start()] + parameters[parameter_number - 1] + value[match.end():]
+                        start_val = value[:match.start()]
+                        parameter_val = parameters[parameter_number - 1]
+                        end_val = value[match.end():]
+                        value = start_val + parameter_val + end_val
                         match = re.search(parameter_pattern, value)
             if num_parameters == replace_count:
                 exec(value)
