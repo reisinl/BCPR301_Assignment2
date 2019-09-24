@@ -1,7 +1,11 @@
 class Drawer(object):
     """ Responsible for defining an interface for drawing """
-    def __init__(self):
-        pass
+
+    def __init__(self, canvas):
+        self.pencilBox = ["black", "red", "green", "blue"]
+        self.canvas = canvas
+        # self.selectPen(0)
+        # self.penUp()
 
     def selectPen(self,penNum):
         print("Selected pen " + str(penNum))

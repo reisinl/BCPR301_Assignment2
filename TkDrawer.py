@@ -4,14 +4,16 @@ import sys
 
 class TkDrawer(Drawer.Drawer):
     def __init__(self, canvas):
-        self._x = canvas.winfo_reqwidth() / 2
-        self._y = canvas.winfo_reqheight() / 2
-        
-        self.pencilBox = ["black", "red", "green", "blue"]
-        self.canvas = canvas
+        self._x = canvas.winfo_reqwidth() / 4
+        self._y = canvas.winfo_reqheight() / 6
+        super().__init__(canvas);
         self.selectPen(0)
         self.penUp()
-        
+        # self.pencilBox = ["black", "red", "green", "blue"]
+        # self.canvas = canvas
+        # self.selectPen(0)
+        # self.penUp()
+
     def selectPen(self, penNum):
         try:
             self.pencolour = self.pencilBox[penNum]

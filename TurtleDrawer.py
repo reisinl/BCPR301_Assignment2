@@ -4,13 +4,17 @@ import Drawer
 
 class TurtleDrawer(Drawer.Drawer):
     def __init__(self, canvas):
-        self.pencilBox = ["black", "red", "green", "blue"]
-        self.canvas = canvas
+        super().__init__(canvas);
+        # self.pencilBox = ["black", "red", "green", "blue"]
+        # self.canvas = canvas
+        # self.selectPen(0)
+        # self.penUp()
+
         self.yurtle = turtle.RawPen(self.canvas)
         self.yurtle.degrees()
         self.selectPen(0)
         self.penUp()
-        
+
     def selectPen(self, penNum):
         try:
             self.yurtle.color(self.pencilBox[penNum])
